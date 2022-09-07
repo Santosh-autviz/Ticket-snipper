@@ -1,0 +1,742 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
+
+    <title>Ticketing Bot</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+    <style>
+<!--        .modal-content{-->
+<!--        height: 500px !important;-->
+<!--         }-->
+<!--       .modal-dialog {-->
+<!--    max-width: 801px !important;-->
+<!--}-->
+    </style>
+</head>
+
+<body>
+
+    <header class="bg-white">
+        <nav class="navbar navbar-expand-lg justify-content-between px-lg-5 px-md-5 px-4 ">
+            <div class="toggle_button">
+                <button class="openbtn border-0" onclick="openNav()">☰ </button>
+            </div>
+            <div>
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'imagee/logo.png' %}" class="img-fluid logo">
+                </a>
+            </div>
+            <div class="profile_icon rounded-circle ">
+                <!-- <img src=""> -->
+               <a href="" class="text-decoration-none"> <i class="fas fa-user-alt text-white p-2"></i></a>
+            </div>
+
+        </nav>
+    </header>
+
+    <section>
+        <div class="container-fluid">
+            <div class="">
+                <div class="tab_background "  >
+                    <div class="tab bg-white sidepanel" id="mySidepanel">
+                        <a href="javascript:void(0)" class="closebtn text-decoration-none  position-absoult" onclick="closeNav()">×</a>
+                        <button class="tablinks border-0 w-100 text-dark text-start d-block" onclick="openCity(event, 'event')" id="defaultOpen"> Event</button>
+                        <button class="tablinks border-0 w-100 text-dark text-start d-block" onclick="openCity(event, 'filter')">Filter</button>
+                        <button class="tablinks border-0 w-100 text-dark text-start d-block" onclick="openCity(event, 'account')">Accounts</button>
+                        <button class="tablinks border-0 w-100 text-dark text-start d-block" onclick="openCity(event, 'seting')">Settings</button>
+                        <button class="tablinks border-0 w-100 text-dark text-start d-block" onclick="openCity(event, 'phnno')">Phone No</button>
+                    </div>
+                </div>
+
+
+                   <!-- <button class="openbtn" onclick="openNav()">☰ Toggle Sidepanel</button>   -->
+
+                <div id="event" class="tabcontent p-lg-4 p-md-4 p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h1 class="table_content_heading">Tickets</h1>
+                        <button type="button" class="btn open_modal rounded-circle" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            <i class="far fa-plus text-white"></i>
+                        </button>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-white" id="exampleModalLabel">Add New Event</h5>
+                                        <i class="far fa-times text-white" data-bs-dismiss="modal"
+                                            aria-label="Close"></i>
+                                    </div>
+                                    <div class="modal-body">
+<!--                                        <div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3">-->
+<form action="" method="POST" class="mb-0 row ">
+    {% csrf_token %}
+<!-- <div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3">-->
+                                            <div class="col-6 mb-3
+
+
+
+">
+<!--                                                <div class="">-->
+
+                                                    <div class="input-group col mb-1">
+                                                        <input type="text" name="url" required class="input w-100">
+                                                        <label  class="input-label ">Url</label>
+                                                    </div>
+
+                                                </div>
+<!--                                            </div>-->
+                                            <div class="col-6">
+<!--                                                <div class="">-->
+                                                    <div class="input-group col mb-1">
+                                                        <input type="number" name="seats" required class="input w-100">
+                                                        <label class="input-label">seat</label>
+                                                    </div>
+<!--                                                </div>-->
+                                            </div>
+    <div class="col-6 mb-0">
+
+                                                   <div class="input-group mb-1">
+                                                      <select class="form-select input_drpdwn" name="Account">
+                                                           <option selected>Choose...</option>
+                                                         <option value="1">One</option>
+                                                           <option value="2">Two</option>
+                                                           <option value="3">Three</option>
+                                                        </select>
+                                                       <label  class="input-label dropdown_label">account</label>
+                                                    </div>
+
+
+</div>
+ <div class="col-6 mb-0">
+                                                <div class="">
+                                                    <div class="input-group mb-1">
+                                                        <select class="form-select input_drpdwn"  name="Filter">
+                                                            <option selected>Choose...</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                          </select>
+                                                        <label   class="input-label dropdown_label">Filter</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+      <div class="col-6 mb-3">
+
+                                                    <div class="input-group mb-1">
+                                                        <input type="text"   name="Hourss" required class="input w-100">
+                                                        <label  class="input-label">Hours</label>
+                                                    </div>
+
+                                            </div>
+                                            <div class="col-6 mb-3">
+
+                                                    <div class="input-group mb-1">
+                                                        <input type="text"  name="Minutess" required class="input w-100">
+                                                        <label   class="input-label">Minutes</label>
+                                                    </div>
+
+                                            </div>
+
+<!--     <div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3 my-2">-->
+<!--                                             <div class="col-6 m-0">-->
+<!--                                                <div class="">-->
+<!--                                                    <div class="input-group mb-1">-->
+<!--                                                        <select class="form-select input_drpdwn" id="inputGroupSelect02" name="Account">-->
+<!--                                                            <option selected>Choose...</option>-->
+<!--                                                            <option value="1">One</option>-->
+<!--                                                            <option value="2">Two</option>-->
+<!--                                                            <option value="3">Three</option>-->
+<!--                                                          </select>-->
+<!--                                                        <label for="name"  class="input-label dropdown_label">account</label>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-6 m-0">-->
+<!--                                                <div class="">-->
+<!--                                                    <div class="input-group mb-1">-->
+<!--                                                        &lt;!&ndash; <input type="text" id="name" required class="input w-100"> &ndash;&gt;-->
+<!--                                                        <select class="form-select input_drpdwn" id="inputGroupSelect02" name="Filter">-->
+<!--                                                            <option selected>Choose...</option>-->
+<!--                                                            <option value="1">One</option>-->
+<!--                                                            <option value="2">Two</option>-->
+<!--                                                            <option value="3">Three</option>-->
+<!--                                                          </select>-->
+<!--                                                        <label for= "name"  class="input-label dropdown_label">filter</label>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--&lt;!&ndash;     </div>&ndash;&gt;-->
+<!--     <div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3">-->
+<!--                                            <div class="col-6">-->
+<!--                                                <div class="">-->
+<!--                                                    <div class="input-group mb-1">-->
+<!--                                                        <input type="text" id="hours"  name="Hourss" required class="input w-100">-->
+<!--                                                        <label for="hours"  class="input-label">Hours</label>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-6">-->
+<!--                                                <div class="">-->
+<!--                                                    <div class="input-group mb-1">-->
+<!--                                                        <input type="text" id="minutes" name="Minutess" required class="input w-100">-->
+<!--                                                        <label for="minutes"  class="input-label">Minutes</label>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--  -->
+<!--     </div>-->
+                                  <div href=" " class="d-flex justify-content-end align-items-end">
+       <input type="submit" class="modal_button" value="Post"/>
+     </div>
+</form>
+
+
+<!--<form action="" method="POST">-->
+<!--{% csrf_token %}-->
+<!--Title: <input type="text" name="title"/><br/>-->
+<!--Content: <br/>-->
+<!--<textarea cols="35" rows="8" name="content">-->
+<!--</textarea><br/>-->
+<!--<input type="submit" value="Post"/>-->
+<!--</form>-->
+
+
+
+<!--                                        </div>-->
+
+<!--                                            <div class="d-flex align-items-center py-3">-->
+<!--                                               <label class="pe-3 specific_label">Do You Want Specific Seat:</label>-->
+<!--                                               <div class="form-check pe-4">-->
+<!--                                                <label class="form-check-label yesno_label" for="exampleRadios2">Yes</label>-->
+<!--                                                <input class="form-check-input yes_label" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">                                               -->
+<!--                                              </div>-->
+<!--                                              <div class="form-check">-->
+<!--                                                <label class="form-check-label" for="exampleRadios2">No</label>-->
+<!--                                                <input class="form-check-input no_label" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">-->
+<!--                                                -->
+<!--                                              </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="row row-cols-2 row-cols-lg-2 g-2 g-lg-3">-->
+<!--                                            <div class="col">-->
+<!--                                                <div class="">-->
+<!--                                                    <div class="input-group mb-1">-->
+<!--                                                        <input type="text" id="manual" required class="input w-100">-->
+<!--                                                        <label for="manual" class="input-label">Manual</label>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                        </div>-->
+                                    </div>
+                                    <div class="modal-footer border-top-0 pt-0">
+                                        <a href=" " class="d-flex justify-content-end text-decoration-none">
+<!--                                            <button class="btn modal_button">Add</button>-->
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table_background bg-white py-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3 px-4">
+                            <h2 class="table_heading">Ticket List</h2>
+                            <i class="far fa-stream"></i>
+                        </div>
+                        <div class="overflow-auto table_wdh">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="defaultCheck1" checked>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="">Sr NO</th>
+                                        <th scope="col" class="">Url</th>
+                                        <th scope="col" class="">seats</th>
+                                        <th scope="col" class="">account</th>
+                                        <th scope="col" class="">filter</th>
+                                        <th scope="col" class="">hours</th>
+                                        <th scope="col" class="">minutes</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   <tr>
+                                       {% for i in data%}
+
+                                       <td>
+
+                                       </td>
+                                       </tr>
+                                        <td>
+<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                       </td>
+                                        <td>{{i.id}}
+                                       </td>
+                                    <td>
+                                          {{i.url}}
+                                       </td>
+                                    <td>
+                                          {{i.no_of_seats}}
+                                       </td>
+                                   <td>
+                                          {{i.account}}
+                                       </td>
+                                   <td>
+                                          {{i.filter}}
+                                       </td>
+                                   <td>
+                                          {{i.hours}}
+                                       </td>
+                                   <td>
+                                          {{i.minute }}
+                                       </td>
+
+                                       {% endfor %}
+                                   </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div id="filter" class="tabcontent p-lg-4 p-md-4 p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h1 class="table_content_heading">Filters </h1>
+                        <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                            aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-white" id="exampleModalToggleLabel">Add Filter</h5>
+                                        <!-- <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button> -->
+
+                                        <i class="far fa-times text-white" data-bs-dismiss="modal"
+                                            aria-label="Close"></i>
+                                    </div>
+                                    <div class="p-4">
+                                        <div class="modal-body p-0">
+                                            <div class="input-group mb-1">
+                                                <input type="text" id="filtername" required class="input w-100">
+                                                <label for="filtername" class="input-label">Fillter Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer border-top-0 justify-content-start p-0 mb-3">
+                                            <button class="btn modal_button" data-bs-target="#exampleModalToggle2"
+                                                data-bs-toggle="modal" data-bs-dismiss="modal">Add Section</button>
+                                        </div>
+
+                                        <div class="input_collocation mb-3">
+                                        </div>
+
+                                        <a href=" " class="d-flex justify-content-end text-decoration-none">
+                                            <button class="btn modal_button">Add</button>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-white" id="exampleModalToggleLabel">Add Section</h5>
+                                        <i class="far fa-times text-white" data-bs-dismiss="modal"
+                                            aria-label="Close"></i>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="section" required class="input w-100">
+                                            <label for="section" class="input-label">Section</label>
+                                        </div>
+                                        <div class="input-group ">
+                                            <input type="text" id="rowss" required class="input w-100">
+                                            <label for="rowss" class="input-label">Rows(Seprated by Comma)</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer border-top-0">
+
+
+                                        <button class="btn modal_button" data-bs-target="#exampleModalToggle"
+                                            data-bs-toggle="modal" data-bs-dismiss="modal">Add Section</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn open_modal rounded-circle" data-bs-toggle="modal" href="#exampleModalToggle"
+                            role="button">
+                            <i class="far fa-plus text-white"></i>
+                        </a>
+                    </div>
+
+                    <div class="table_background bg-white py-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3 px-4">
+                            <h2 class="table_heading">Filter List</h2>
+                            <i class="far fa-stream"></i>
+                        </div>
+                        <div class="overflow-auto table_wdh">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="defaultCheck1">
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="name_wdh">Filter Name</th>
+                                        <th scope="col" class="email_wdh">Section Rows</th>
+                                        <th scope="col" class="psrd_wdh">Password</th>
+                                        <th scope="col" class="card_wdh">Card No</th>
+                                        <th scope="col" class="expiry_wdh">Expiry</th>
+                                        <!-- <th scope="col" class="cvv_wdh">Cvv</th>
+                                        <th scope="col" class="adrs_wdh">Address</th>
+                                        <th scope="col" class="cvv_wdh">Cvv</th>
+                                        <th scope="col" class="othr_wdh">Address</th> -->
+                                        <!-- <th scope="col" class="othr_wdh">Address</th>
+                                        <th scope="col" class="othr_wdh">Address</th>
+                                        <th scope="col" class="othr_wdh">Address</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="defaultCheck1">
+                                            </div>
+                                        </th>
+                                        <td>General Admission</td>
+                                        <td>coderbochass@gmail.com</td>
+                                        <td>tototo222</td>
+                                        <td>485415698563257</td>
+                                        <td>12/2019</td>
+                                        <!-- <td>542</td>
+                                        <td>National Center for education statistice fight edmond abc 73003</td>
+                                        <td>542</td>
+                                        <td>485415698563257</td> -->
+                                        <!-- <td>485415698563257</td>
+                                        <td>485415698563257</td>
+                                        <td>485415698563257</td> -->
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div id="account" class="tabcontent p-lg-4 p-md-4 p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h1 class="table_content_heading">Accounts</h1>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn open_modal rounded-circle" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            <i class="far fa-plus text-white"></i>
+                        </button>
+
+                        <!-- Modal -->
+
+                        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-white" id="exampleModalToggleLabel">Add Your Account
+                                        </h5>
+                                        <i class="far fa-times text-white" data-bs-dismiss="modal"
+                                            aria-label="Close"></i>
+                                    </div>
+                                    <div class="modal-body p-4">
+
+<form action="" method="POST" class="mb-0 row ">
+    {% csrf_token %}
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="email"  name="email" required class="input w-100">
+                                                        <label class="input-label">Email Id</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="password" name="password" required class="input w-100">
+                                                        <label  class="input-label">Password</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text"  name="card_no" required class="input w-100">
+                                                        <label class="input-label">Card No</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" name="Expirymonth" required class="input w-100">
+                                                        <label  class="input-label">Expiry Month</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" name="Expiryyear" required class="input w-100">
+                                                        <label  class="input-label">Expiry Year</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" name="Cvv" required class="input w-100">
+                                                        <label class="input-label">Cvv No</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" name="First name" required class="input w-100">
+                                                        <label class="input-label">First Name</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" name="lastname" required class="input w-100">
+                                                        <label class="input-label">Last Name</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text"  name="address" required class="input w-100">
+                                                        <label  class="input-label">Address 1</label>
+                                                    </div>
+                                            </div>
+                                            <div class="col-6">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" name="city" required class="input w-100">
+                                                        <label  class="input-label">City</label>
+                                                    </div>
+                                                </div>
+                                     </form>
+
+                                    </div>
+                                    <div class="modal-footer border-top-0 pt-0">
+                                        <a href=" " class="d-flex justify-content-end text-decoration-none">
+                                            <button class="btn modal_button">Add</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="table_background bg-white py-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3 px-4">
+                            <h2 class="table_heading">Account List</h2>
+                            <i class="far fa-stream"></i>
+                        </div>
+                        <div class="overflow-auto table_wdh">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="defaultCheck1">
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="Sr._NO_wdh">Sr._No</th>
+                                        <th scope="col" class="Email_Id_wdh">Email_Id</th>
+                                        <th scope="col" class="Password_wdh">Password</th>
+                                        <th scope="col" class="Card_No_wdh">Card_No</th>
+                                        <th scope="col" class="Expiry_Month_wdh">Expiry_Month</th>
+                                        <th scope="col" class="Expiry_Year_wdh">Expiry_Year</th>
+                                        <th scope="col" class="Cvv_No_wdh">Cvv_No</th>
+                                        <th scope="col" class="First_Name_wdh">First_Name</th>
+                                        <th scope="col" class="Last_Name_wdh">Last_Name</th>
+                                        <th scope="col" class="Address_wdh">Address</th>
+                                        <th scope="col" class="City_wdh">City</th>
+<!--                                        <th scope="col" class="othr_wdh">Address</th>-->
+<!--                                        <th scope="col" class="othr_wdh">Address</th>-->
+<!--                                        <th scope="col" class="othr_wdh">Address</th>-->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="defaultCheck1">
+                                            </div>
+                                        </th>
+<!--                                        Account Detail-->
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div id="seting" class="tabcontent p-lg-5 p-md-5 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h1 class="table_content_heading">Settings</h1>
+                    </div>
+
+                    <div class="table_background bg-white p-4">
+                        <div class="input-group mb-3">
+                            <input type="number" id="delary" required class="input " value="0">
+                            <label for="delary" class="input-label">Delary in seconds</label>
+                        </div>
+                        <h3 class="radio_heading">Recursion</h3>
+                        <div class="d-flex">
+                            <div class="d-flex align-items-center me-3">
+                                <label class="radio_label">False</label>
+                                <input class="form-check-input ms-2" type="radio" name="inlineRadioOptions"
+                                    id="inlineRadio1" value="option1">
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <label class="radio_label">True</label>
+                                <input class="form-check-input ms-2" type="radio" name="inlineRadioOptions"
+                                    id="inlineRadio2" value="option2">
+                            </div>
+                        </div>
+                        <a href=" " class="d-flex justify-content-start text-decoration-none mt-lg-5 mt-md-5 mt-3">
+                            <button class="btn modal_button">Update</button>
+                        </a>
+
+
+
+
+                    </div>
+                </div>
+
+                <div id="phnno" class="tabcontent p-lg-4 p-md-4 p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h1 class="table_content_heading">Phone Nos.</h1>
+
+                        <button type="button" class="btn open_modal rounded-circle" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalnew">
+                            <i class="far fa-plus text-white"></i>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalnew" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-white" id="exampleModalLabel">Add Your Phone no</h5>
+                                        <i class="far fa-times text-white" data-bs-dismiss="modal"
+                                            aria-label="Close"></i>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-1">
+                                            <input type="tel" id="phn_no" required class="input w-100">
+                                            <label for="phn_no" class="input-label">Phone no</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer border-top-0 pt-0">
+                                        <a href=" " class="d-flex justify-content-end text-decoration-none">
+                                            <button class="btn modal_button">Add</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="table_background bg-white py-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3 px-4">
+                            <h2 class="table_heading">Ticket List</h2>
+                            <i class="far fa-stream"></i>
+                        </div>
+                        <div class="overflow-auto table_wdh">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="defaultCheck1" checked>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="">Phone no</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr>
+                                      <th class="">
+                                        <span class="no_ticket text-center">No Ticket Found</span>
+                                      </th>
+                                    </tr> -->
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <script src="{% static 'main.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

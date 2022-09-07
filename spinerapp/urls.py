@@ -1,13 +1,9 @@
-from selenium.webdriver.chrome.options import Options
-from selenium import webdriver
-
-url = 'https://github.com/'
-
-options = Options()
-options.add_argument("--headless")
-options.add_argument("window-size=1400,1500")
-
-driver = webdriver.Chrome(options=options)
-
-driver.get(url)
-
+from django.urls import path
+from .import views
+from django.contrib import admin
+urlpatterns = [
+    path('browser',views.browser,name="browser"),
+    path('',views.index),
+    path('show',views.data_show,name="show"),
+    path('admin/', admin.site.urls)
+]
